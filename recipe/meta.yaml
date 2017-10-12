@@ -12,12 +12,18 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/perm_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/perm/perm_{{ version }}.tar.gz
-
   sha256: 53c6ee598d5b7b04388915dddc5adf1f8f313b73c3bceb3708db7a632857e500
 
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  skip: true  # [win32]
+
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
@@ -32,8 +38,15 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('perm')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('perm')"           # [not win]
     - "\"%R%\" -e \"library('perm')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: https://CRAN.R-project.org/package=perm
@@ -45,3 +58,26 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: perm
+# Type: Package
+# Title: Exact or Asymptotic permutation tests
+# Version: 1.0-0.0
+# Date: 2010-07-29
+# Author: Michael Fay
+# Maintainer: Michael Fay <mfay@niaid.nih.gov>
+# Depends: R (>= 2.2.1), stats
+# Suggests: coin
+# Description: Perform Exact or Asymptotic permutation tests
+# License: GPL
+# Packaged: 2010-07-29 15:28:08 UTC; faym
+# Repository: CRAN
+# Date/Publication: 2010-07-29 15:46:08
+# NeedsCompilation: no
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
