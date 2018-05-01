@@ -14,16 +14,10 @@ source:
     - {{ cran_mirror }}/src/contrib/Archive/perm/perm_{{ version }}.tar.gz
   sha256: 53c6ee598d5b7b04388915dddc5adf1f8f313b73c3bceb3708db7a632857e500
 
-
-  # patches:
-   # List any patch files here
-   # - fix.patch
-
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
-
 
   # This is required to make R link correctly on Linux.
   rpaths:
